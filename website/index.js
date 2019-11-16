@@ -37,11 +37,11 @@ function signup(){
     <br>
     <label>Password</label>
     <br>
-    <input id="password">
+    <input type="password" id="password">
     <br>
     <label>Confirm Password (if signing up)</label>
     <br>
-    <input id="confirmPass">
+    <input type="password" id="confirmPass">
     <br>
     <input type="submit" value="Go!">
   </form>`;

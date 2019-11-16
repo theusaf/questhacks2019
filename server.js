@@ -20,7 +20,7 @@ app.post("/login",(req,res)=>{
       res.status(400);
       res.send("Invalid password or unmatching password");
     }else{ // if valid passwords
-      const people = fs.readFile(path.join(__dirname,"database.json"),(err,info)=>{
+      const people = fs.readFile(path.join(__dirname,"database.json"),"utf8",(err,info)=>{
         const data2 = JSON.parse(info);
         if(data2[data.username]){ // username taken
           res.status(400);
@@ -37,8 +37,16 @@ app.post("/login",(req,res)=>{
     }
   }else{ // if logging in
     if(data.username){
-      if(){
-
+      if(data.password){
+        fs.readFile(path.join(__dirname,"database.json"),"utf8",(err,info)=>{
+          const data2 = JSON.parse(info);
+          if(data2[data.username].password == md5(data.password)){ // good
+            res.send("Success!");
+          }else{
+            res.status(400);
+            res.send("Invalid password");
+          }
+        });
       }else{
         res.status(400);
         res.send("Missing password");
