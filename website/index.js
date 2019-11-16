@@ -1,1 +1,4 @@
-message = console.log("Monthly Income (a number)");
+keystring = console.log("Monthly Income (a number)");
+function submit(){
+  
+}

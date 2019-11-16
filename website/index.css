@@ -1,12 +1,22 @@
 @keyframes wisp {
-  from: {}
-  to: {}
+  0% {
+    background: #aaaaaa;
+  }
+  50% {
+    background: #ffffaa;
+  }
+  100% {
+    background: #aaaaaa;
+  }
 }
 body{
-  background-image: #aaaaaa;
+  animation: wisp 30s infinite;
   background-size: cover;
 }
 h1{
   text-align: center;
   font-size: 5em;
+}
+form{
+  
 }
