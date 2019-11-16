@@ -11,14 +11,12 @@
     <script src="index.js"></script>
     <div class="center">
       <form class="page" action="javascript:submit();" method="post">
-        <h1>Sign Up</h1>
+        <h2>Sign Up</h2>
         <input type="text" name="username" placeholer="Username"/>
         <input type="text" name="Email" placeholer="Email"/>
         <input type="text" name="Password" placeholer="Password"/>
-        <input type="text" name="R" placeholer="Username"/>
-
-
-
+        <input type="submit" name="Submit" placeholer="Signup-button" value="Sign Up"/>
+        
         <p><b>After tax income:<b></p>
         <label for="income">$</label>
         <input type="number" id="income" value="" min="0">
@@ -29,8 +27,9 @@
     <!-- Place new scene here -->
     <div class="center">
       <form class="page" action="javascript:submit2();" method="post">
-        <input type="number" id="percent" value="" min="0">
-        <<label for="percent"></label>
+
+        <input type="number" id="percent" value="" min="0" max="100">
+        <label for="percent">%</label>
         <br>
         <button type="submit">Enter</button>
 

@@ -15,4 +15,8 @@ app.post("/response",(req,res)=>{
 
 const socket = new ws.Server({server:server});
 
+socket.on("connection",sock=>{
+  
+});
+
 server.listen(3000);
