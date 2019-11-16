@@ -1,7 +1,11 @@
 // first form
+var dayStart;
+var dayChange;
+var dayPass;
 var money;
 function submit(){
   money = document.getElementById("income").value;
+  submit2();
 }
 // second form
 var percent;
@@ -9,15 +13,34 @@ var monthlySave;
 function submit2(){
   percent = document.getElementById("percent").value;
   monthlySave = money*percent/100;
+  submit3();
 }
 var goal;
 var days;
 var months;
+// calculate time
 function submit3(){
   goal = document.getElementbyId("amount").value;
-  months = money/monthlySave;
+  months = goal/monthlySave;
   days = Math.round(months*30.4666667);
+  submit4();
 }
+// income change
+var remainder;
+function submit4(){
+  money = document.getElementById("income").value;
+  remainder = goal-monthlySave*dayPass/30.4666667;
+  monthlySave = money*percent/100;
+  months=remainder/monthlySave+dayPass/30.4666667;
+  days = Math.round(months*30.4666667);
+  submit5();
+}
+// percent change
+function submit5(){
+  percent = document.getElementById("percent").value;
+  monthlySave = money*percent/100;
+}
+
 // send text
 function chat(text){
   document.getElementById('chatInfo').value = "";
@@ -61,6 +84,11 @@ function signup(){
   document.body.append(container);
 }
 
+const credentials = {
+  pass: null,
+  user: null,
+  data: null
+};
 function login(user,pw,cpw){
   const x = new XMLHttpRequest();
   x.open("POST",`http://${location.host}/login`);
@@ -72,6 +100,9 @@ function login(user,pw,cpw){
   }));
   x.onload = function(){
     if(x.response == "Success!"){
+      credentials.user = user;
+      credentials.pass = pw;
+      name = user;
       document.getElementById("loginBox").outerHTML = "";
       alert("Logged in! (but not really)");
     }
@@ -80,7 +111,7 @@ function login(user,pw,cpw){
 
 const chatSocket = new WebSocket(`ws://${location.host}`);
 let id;
-let name = "Anonymous User"
+let name = "Anonymous User";
 
 chatSocket.onmessage = function(e){
   const data = JSON.parse(e.data);

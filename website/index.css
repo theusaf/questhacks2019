@@ -23,7 +23,7 @@ h1{
 .info{
   margin-left: 15%;
   width: 70%;
-  font-family: Bree+Seri, sans-serif;
+  font-family: "Bree Serif", serif;
 }
 .chat{
   background: grey;
@@ -99,6 +99,7 @@ nav a{
   width: 100%;
   width: 70%;
   margin-left: 15%;
+  font-size: 1.5rem;
 }
 .flex{
   display: flex;

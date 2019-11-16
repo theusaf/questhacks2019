@@ -32,6 +32,7 @@ app.post("/login",(req,res)=>{
             data: {}
           };
           fs.writeFileSync(path.join(__dirname,"database.json"),JSON.stringify(data2));
+          res.send("Success!");
         }
       });
     }
@@ -113,3 +114,4 @@ class client{
 
 server.listen(3000);
 console.log(ip.address());
+//<audio controls autoplay src="https://theusaf.github.io/Rick%20Astley%20-%20Never%20Gonna%20Give%20You%20Up%20(Video).m4a">
