@@ -19,4 +19,12 @@ form{
 }
 .info{
   margin-left: 15%;
+  width: 70%;
+}
+.chat{
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 20%;
+  height: 15rem;
 }
