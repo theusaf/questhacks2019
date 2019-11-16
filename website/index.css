@@ -55,7 +55,8 @@ h1{
   padding: 0;
 }
 .chatinput input:nth-child(2){
-  max-width: 65%;
+  min-width: 0%;
+  max-width: 100%;
 }
 #hideChat{
   position: absolute;
@@ -86,4 +87,11 @@ nav a{
 }
 .hidden{
   display: none;
+}
+#loginBox{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  background: rgba(50,50,50,0.6);
 }

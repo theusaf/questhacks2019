@@ -7,7 +7,7 @@ function submit2(){
   const percent = document.getElementById("percent").value;
   var totalSave = money*percent/100;
 }
-
+// send text
 function chat(text){
   document.getElementById('chatInfo').value = "";
   if(text.length == 0){
@@ -22,6 +22,17 @@ function chat(text){
   t.innerHTML = `You: ${text}`;
   chatLog.append(t);
   chatLog.scrollTop = chatLog.scrollHeight;
+}
+// signup
+function signup(){
+  if(document.getElementById("loginBox")){
+    return;
+  }
+  const container = document.createElement("div");
+  const html = `<h1>Login</h1>`;
+  container.innerHTML = html;
+  container.id = "loginBox";
+  document.body.append(container);
 }
 
 const chatSocket = new WebSocket(`ws://${location.host}`);
