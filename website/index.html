@@ -16,8 +16,8 @@
         <input type="text" name="Email" placeholer="Email"/>
         <input type="text" name="Password" placeholer="Password"/>
         <input type="submit" name="Submit" placeholer="Signup-button" value="Sign Up"/>
-        
-        <p><b>After tax income:<b></p>
+
+        <p><b>After tax income:</b></p>
         <label for="income">$</label>
         <input type="number" id="income" value="" min="0">
         <br>
@@ -27,7 +27,7 @@
     <!-- Place new scene here -->
     <div class="center">
       <form class="page" action="javascript:submit2();" method="post">
-
+        <p><b>How much do you want to save?</b></p>
         <input type="number" id="percent" value="" min="0" max="100">
         <label for="percent">%</label>
         <br>
@@ -36,14 +36,15 @@
       </form>
     </div>
     <div class="info">
-      wisp is the revolutionary new way to <strong>save<strong> money. Calculate your after-tax income, and wisp will do all the work for you. Get a daily spend limit, and the rest goes into the necessities. Still confused? wisp offers help from certified experts.
+      Wisp is the revolutionary new way to <strong>save</strong> money. Calculate your after-tax income, and wisp will do all the work for you. Get a daily spend limit, and the rest goes into the necessities. Still confused? wisp offers help from certified experts.
     </div>
     <div class="chat">
-      <form class="chat" action="index.html" method="post">
-        <div class="">
+      <form class="chat" action="javascript:chat();">
+        <div class="texts">
 
         </div>
-        <input type="text" name="" value="">
+        <input type="text" name="chatInfo" value="">
+        <input type="submit" name="chatSubmit" value="send">
       </form>
     </div>
   </body>
