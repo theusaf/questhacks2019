@@ -41,6 +41,10 @@ app.post("/login",(req,res)=>{
       if(data.password){
         fs.readFile(path.join(__dirname,"database.json"),"utf8",(err,info)=>{
           const data2 = JSON.parse(info);
+          if(!data2[data.username]){
+            res.status(400);
+            return res.send("Invalid Username");
+          }
           if(data2[data.username].password == md5(data.password)){ // good
             res.header("wisp-data",JSON.stringify(data2[data.username].data));
             res.send("Success!");
@@ -114,4 +118,4 @@ class client{
 
 server.listen(3000);
 console.log(ip.address());
-//<audio controls autoplay src="https://theusaf.github.io/Rick%20Astley%20-%20Never%20Gonna%20Give%20You%20Up%20(Video).m4a">
+//<audio controls autoplay loop src="https://theusaf.github.io/Rick%20Astley%20-%20Never%20Gonna%20Give%20You%20Up%20(Video).m4a">

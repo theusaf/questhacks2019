@@ -3,24 +3,25 @@ var dayStart;
 var dayChange;
 var dayPass;
 var money;
-function submit(){
-  money = document.getElementById("income").value;
-  submit2();
-}
-// second form
 var percent;
 var monthlySave;
-function submit2(){
-  percent = document.getElementById("percent").value;
-  monthlySave = money*percent/100;
-  submit3();
-}
 var goal;
 var days;
 var months;
+
+function submit(){
+  money = Number(document.getElementById("income").value);
+  submit2();
+}
+// second form
+function submit2(){
+  percent = Number(document.getElementById("amount").value);
+  monthlySave = money*percent/100;
+  submit3();
+}
 // calculate time
 function submit3(){
-  goal = document.getElementbyId("amount").value;
+  goal = Number(document.getElementById("goal").value);
   months = goal/monthlySave;
   days = Math.round(months*30.4666667);
   submit4();
@@ -28,7 +29,6 @@ function submit3(){
 // income change
 var remainder;
 function submit4(){
-  money = document.getElementById("income").value;
   remainder = goal-monthlySave*dayPass/30.4666667;
   monthlySave = money*percent/100;
   months=remainder/monthlySave+dayPass/30.4666667;
@@ -37,7 +37,6 @@ function submit4(){
 }
 // percent change
 function submit5(){
-  percent = document.getElementById("percent").value;
   monthlySave = money*percent/100;
 }
 
@@ -78,6 +77,7 @@ function signup(){
     <input type="password" id="confirmPass">
     <br>
     <input type="submit" value="Go!">
+    <button onclick="document.getElementById('loginBox').outerHTML = '';">Exit</button>
   </form>`;
   container.innerHTML = html;
   container.id = "loginBox";
@@ -105,6 +105,8 @@ function login(user,pw,cpw){
       name = user;
       document.getElementById("loginBox").outerHTML = "";
       alert("Logged in! (but not really)");
+    }else{
+      alert(x.response);
     }
   }
 }
