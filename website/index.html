@@ -7,13 +7,20 @@
     <link rel="stylesheet" href="index.css">
   </head>
   <body>
-    <h1>wisp</h1>
-    <script src="index.js"></script>
+    <nav>
+      <a href="/">Home</a>
+      <a href="about.html">About</a>
+      <a href="#">Sign Up</a>
+    </nav>
+    <h1>Wisp</h1>
     <div class="center">
       <form class="page" action="javascript:submit();" method="post">
         <h2>Sign Up</h2>
+        <h2>Username</h2>
         <input type="text" name="username" placeholer="Username"/>
+        <h2>Email</h2>
         <input type="text" name="Email" placeholer="Email"/>
+        <h2>Password</h2>
         <input type="text" name="Password" placeholer="Password"/>
         <input type="submit" name="Submit" placeholer="Signup-button" value="Sign Up"/>
 
@@ -32,22 +39,85 @@
         <label for="percent">%</label>
         <br>
         <button type="submit">Enter</button>
+      </form>
+    </div>
+    <!-- Place new scene here -->
+    <div class="center">
+      <form class="page" action="javascript:submit3();" method="post">
+        <h2><b>How much do you want to spend on these?</b></h2>
+        <br>
+        <p><b>Housing</b></p>
+        <br>
+        <label for="house">$</label>
+        <input type="number" id="house" value="" min="0">
+        <br>
+        <p><b>Food</b></p>
+        <br>
+        <label for="food">$</label>
+        <input type="number" id="food" value="" min="0">
+        <br>
+        <p><b>Pets</b></p>
+        <br>
+        <label for="pets">$</label>
+        <input type="number" id="house" value="" min="0">
+        <br>
+        <p><b>Electronics</b></p>
+        <br>
+        <label for="electronics">$</label>
+        <input type="number" id="electronics" value="" min="0">
+        <br>
+        <p><b>Clothing</b></p>
+        <br>
+        <label for="clothing">$</label>
+        <input type="number" id="clothing" value="" min="0">
+        <br>
+        <p><b>Tuition(for you or your family)</b></p>
+        <br>
+        <label for="tuition">$</label>
+        <input type="number" id="tuition" value="" min="0">
+        <br>
+        <p><b>Vacation</b></p>
+        <br>
+        <label for="Vacation">$</label>
+        <input type="number" id="Vacation" value="" min="0">
+        <br>
 
       </form>
     </div>
-    <div class="info">
-      Wisp is the revolutionary new way to <strong>save</strong> money. Calculate your after-tax income, and wisp will do all the work for you. Get a daily spend limit, and the rest goes into the necessities. Still confused? wisp offers help from certified experts.
+    <!-- Place new scene here -->
+    <div class="center">
+      <form class="page" action="javascript:submit3();" method="post">
+        <h2><b>What are you willing to cut?</b></h2>
+        <br>
+        <p><b>Housing</b></p>
+        <br>
+        <p id="spending-output"></p>
+
+      </form>
+    </div>
+    <!-- Place new scene here -->
+    <div class="center">
+      <form class="page" action="javascript:submit3();" method="post">
+        <h2><b>Recommended Spending</b></h2>
+        <br>
+        <p><b>Housing</b></p>
+        <br>
+        <p id="spending-output"></p>
+
+      </form>
     </div>
     <div class="chat">
-      <form class="chat" action="javascript:chat();">
+      <form class="chat" action="javascript:chat(document.getElementById('chatInfo').value);">
         <div class="texts">
 
         </div>
         <div class="chatinput">
-          <input type="text" name="chatInfo" value="">
+          <button type="button" id="hideChat">X</button>
+          <input type="text" id="chatInfo" name="chatInfo" value="" autocomplete="off">
           <input type="submit" name="chatSubmit" value="send">
         </div>
       </form>
     </div>
+    <script src="index.js"></script>
   </body>
 </html>

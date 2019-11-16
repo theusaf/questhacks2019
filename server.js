@@ -20,17 +20,32 @@ const messages = [];
 var clientId = 0;
 const clients = {};
 
+function alertPeople(message){
+  for(var i in clients){
+    if(clients[i].id != message.id){
+      clients[i].sock.send(JSON.stringify({
+        message: message.message,
+        name: `${message.name} [${message.id}]`,
+        type: "chat"
+      }));
+    }
+  }
+}
+
 socket.on("connection",sock=>{
-  clients[clientId] = new client;
+  clients[clientId] = new client(clientId,sock);
   sock.id = clientId;
   sock.on("message",message=>{
     let data;
     try{
       data = JSON.parse(message);
     }catch(err){
+      console.log("Uh oh an error");
+      console.log(err);
       return;
     }
     messages.push(data);
+    alertPeople(data);
   });
   sock.on("close",()=>{
     delete clients[sock.id];
@@ -40,11 +55,14 @@ socket.on("connection",sock=>{
     messages: messages,
     type: "start"
   }));
+  clientId++;
 });
 
 class client{
-  constructor(){
+  constructor(id,sock){
     this.name = "";
+    this.id = id;
+    this.sock = sock;
   }
 }
 
