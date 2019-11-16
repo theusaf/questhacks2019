@@ -10,7 +10,7 @@ h1{
 .center{
   text-align: center;
 }
-form{
+.page{
   background: #dddddd;
   border: solid #eeeeee;
   width: 70%;
@@ -22,9 +22,11 @@ form{
   width: 70%;
 }
 .chat{
+  background: grey;
   position: fixed;
   bottom: 0;
   right: 0;
   width: 20%;
   height: 15rem;
+  border-radius: 5rem;
 }
