@@ -7,6 +7,7 @@ const path = require('path');
 const fs = require('fs');
 const app = express();
 const server = http.createServer(app);
+const ip = require('ip');
 
 app.use(express.static("website"));
 app.post("/response",(req,res)=>{
@@ -48,3 +49,4 @@ class client{
 }
 
 server.listen(3000);
+console.log(ip.address());

@@ -31,9 +31,17 @@ h1{
   border-radius: 1rem 1rem 0 0;
 }
 .texts{
-  width: 100%;
+  width: 90%;
+  margin-left: 5%;
+  border-radius: 1rem 1rem 0 0;
   height: 90%;
-}
-.chat input{
+  background: #eeeeee;
 
+}
+.chatinput{
+  width: 90%;
+  margin-left: 5%;
+}
+.chatinput input{
+  width: 80%;
 }
