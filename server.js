@@ -41,6 +41,7 @@ app.post("/login",(req,res)=>{
         fs.readFile(path.join(__dirname,"database.json"),"utf8",(err,info)=>{
           const data2 = JSON.parse(info);
           if(data2[data.username].password == md5(data.password)){ // good
+            res.header("wisp-data",JSON.stringify(data2[data.username].data));
             res.send("Success!");
           }else{
             res.status(400);

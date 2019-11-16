@@ -1,11 +1,22 @@
 // first form
+var money;
 function submit(){
-  const money = document.getElementById("income").value;
+  money = document.getElementById("income").value;
 }
 // second form
+var percent;
+var monthlySave;
 function submit2(){
-  const percent = document.getElementById("percent").value;
-  var totalSave = money*percent/100;
+  percent = document.getElementById("percent").value;
+  monthlySave = money*percent/100;
+}
+var goal;
+var days;
+var months;
+function submit3(){
+  goal = document.getElementbyId("amount").value;
+  months = money/monthlySave;
+  days = Math.round(months*30.4666667);
 }
 // send text
 function chat(text){
@@ -59,6 +70,12 @@ function login(user,pw,cpw){
     password: pw,
     confirm: cpw
   }));
+  x.onload = function(){
+    if(x.response == "Success!"){
+      document.getElementById("loginBox").outerHTML = "";
+      alert("Logged in! (but not really)");
+    }
+  }
 }
 
 const chatSocket = new WebSocket(`ws://${location.host}`);
