@@ -1,17 +1,7 @@
-@keyframes wisp {
-  0% {
-    background: #aaaaaa;
-  }
-  50% {
-    background: #ffffaa;
-  }
-  100% {
-    background: #aaaaaa;
-  }
-}
 body{
-  animation: wisp 30s infinite;
+  background: #000077;
   background-size: cover;
+  color: #eeeeee;
 }
 h1{
   text-align: center;
