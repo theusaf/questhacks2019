@@ -29,10 +29,36 @@ function signup(){
     return;
   }
   const container = document.createElement("div");
-  const html = `<h1>Login</h1>`;
+  const html = `<form action="javascript:login(document.getElementById('username').value,document.getElementById('password').value,document.getElementById('confirmPass').value)">
+    <h2>Login</h2>
+    <label>Username</label>
+    <br>
+    <input id="username">
+    <br>
+    <label>Password</label>
+    <br>
+    <input id="password">
+    <br>
+    <label>Confirm Password (if signing up)</label>
+    <br>
+    <input id="confirmPass">
+    <br>
+    <input type="submit" value="Go!">
+  </form>`;
   container.innerHTML = html;
   container.id = "loginBox";
   document.body.append(container);
+}
+
+function login(user,pw,cpw){
+  const x = new XMLHttpRequest();
+  x.open("POST",`http://${location.host}/login`);
+  x.setRequestHeader('content-type','application/json');
+  x.send(JSON.stringify({
+    username: user,
+    password: pw,
+    confirm: cpw
+  }));
 }
 
 const chatSocket = new WebSocket(`ws://${location.host}`);
