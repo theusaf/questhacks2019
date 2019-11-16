@@ -20,3 +20,9 @@ h1{
 .center{
   text-align: center;
 }
+form{
+  background: #dddddd;
+  border: solid #eeeeee;
+  width: 70%;
+  margin-left: 15%;
+}
