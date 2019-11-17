@@ -2,7 +2,7 @@
 const credentials = {
   pass: null,
   user: null,
-  data: null
+  data: []
 };
 var dayStart;
 var dayChange;
@@ -19,8 +19,9 @@ const compounded = 1;
 
 if(getCookie("username") && getCookie("password")){
   credentials.user = getCookie("username");
-  credentials.password = getCookie("password");
-  login(credentials.user,credentials.password);
+  credentials.pass = getCookie("password");
+  login(credentials.user,credentials.pass);
+  getData();
 }
 
 function submit(){
@@ -38,8 +39,9 @@ function submit3(){
   goal = Number(document.getElementById("goal").value);
   months = goal/monthlySave;
   days = Math.round(months*30.4666667);
+  graph();
 }
-// income change
+/*// income change
 function submit4(){
   remainder = goal-monthlySave*dayPass/30.4666667;
   monthlySave = money*percent/100;
@@ -50,6 +52,27 @@ function submit4(){
 // percent change
 function submit5(){
   monthlySave = money*percent/100;
+}*/
+
+function graph(){
+  const x = new XMLHttpRequest();
+  x.open("POST",`http://${location.host}/save`);
+  x.setRequestHeader("content-type","application/json");
+  const dat = {
+    date: Date.now(),
+    percent: percent,
+    income: money,
+    goal: goal,
+    credentials: {
+      pass: credentials.pass,
+      user: credentials.user
+    },
+    savemonthly: monthlySave,
+    days: days
+  };
+  x.send(JSON.stringify(dat));
+  credentials.data.push(dat);
+  drawStuff();
 }
 
 // send text
@@ -181,5 +204,8 @@ function setCookie(cname, cvalue, exdays) {
 }
 
 function getData(){
-
+  const x = new XMLHttpRequest();
+  x.open("POST",`http://${location.host}/get`);
+  x.setRequestHeader("content-type","application/json");
+  x.send(credentials);
 }
