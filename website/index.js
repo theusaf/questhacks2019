@@ -14,6 +14,8 @@ var goal;
 var days;
 var months;
 var remainder;
+const interest = 0.01;
+const compounded = 1;
 
 if(getCookie("username") && getCookie("password")){
   credentials.user = getCookie("username");
@@ -111,7 +113,7 @@ function login(user,pw,cpw){
       credentials.user = user;
       credentials.pass = pw;
       name = user;
-      document.getElementById("loginBox").outerHTML = "";
+      try{document.getElementById("loginBox").outerHTML = "";}catch(err){return;}
       alert("Logged in! (but not really)");
     }else{
       setCookie("username",user,-1);
