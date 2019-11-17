@@ -216,6 +216,9 @@ function getData(){
     data.forEach(o=>{
       credentials.data.push(o);
       goal = o.goal;
+      document.getElementById("goal").value = goal;
+      document.getElementById("income").value = o.income;
+      document.getElementById("amount").value = o.percent;
     });
     drawStuff();
   };
