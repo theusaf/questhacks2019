@@ -65,6 +65,7 @@ function drawStuff(){
   }); // left represents total days
   let totalDiff = 0;
   for(i in d){
+    totalDiff += diff;
     const diff = Math.round((Date.now() - d[i].date) / 1000 / 360 / 24); // diff in days
     const day1 = d[i].savemonthly / 30.4666667; // daily cost
     const scalarY = 1000 / goal;
@@ -74,7 +75,6 @@ function drawStuff(){
     ctx.lineTo(80 + totalDiff + 920 * (diff / left),920 - (diff * (scalarY * day1)));
     console.log(920 - (diff * (scalarY * day1)));
     ctx.stroke();
-    totalDiff += diff;
   }
   // draw rest of line
   const day1 = d[i].savemonthly / 30.4666667;
