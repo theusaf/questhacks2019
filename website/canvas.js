@@ -63,6 +63,7 @@ function drawStuff(){
       left = o.days;
     }
   }); // left represents total days
+  let totalDiff = 0;
   for(i in d){
     const diff = Math.round((Date.now() - d[i].date) / 1000 / 360 / 24); // diff in days
     const day1 = d[i].savemonthly / 30.4666667; // daily cost
@@ -70,9 +71,10 @@ function drawStuff(){
     console.log(diff);
     console.log(left);
     // y value works.
-    ctx.lineTo(80 + 920 * (diff / left),920 - (diff * (scalarY * day1)));
+    ctx.lineTo(80 + totalDiff + 920 * (diff / left),920 - (diff * (scalarY * day1)));
     console.log(920 - (diff * (scalarY * day1)));
     ctx.stroke();
+    totalDiff += diff;
   }
   // draw rest of line
   const day1 = d[i].savemonthly / 30.4666667;
