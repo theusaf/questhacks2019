@@ -1,4 +1,9 @@
 // first form
+const credentials = {
+  pass: null,
+  user: null,
+  data: null
+};
 var dayStart;
 var dayChange;
 var dayPass;
@@ -9,6 +14,12 @@ var goal;
 var days;
 var months;
 var remainder;
+
+if(getCookie("username") && getCookie("password")){
+  credentials.user = getCookie("username");
+  credentials.password = getCookie("password");
+  login(credentials.user,credentials.password);
+}
 
 function submit(){
   money = Number(document.getElementById("income").value);
@@ -61,7 +72,7 @@ function signup(){
     return;
   }
   const container = document.createElement("div");
-  const html = `<form action="javascript:login(document.getElementById('username').value,document.getElementById('password').value,document.getElementById('confirmPass').value)">
+  const html = `<form class="login" action="javascript:login(document.getElementById('username').value,document.getElementById('password').value,document.getElementById('confirmPass').value)">
     <h2>Login</h2>
     <label>Username</label>
     <br>
@@ -83,11 +94,6 @@ function signup(){
   document.body.append(container);
 }
 
-const credentials = {
-  pass: null,
-  user: null,
-  data: null
-};
 // logging in
 function login(user,pw,cpw){
   const x = new XMLHttpRequest();
@@ -100,12 +106,18 @@ function login(user,pw,cpw){
   }));
   x.onload = function(){
     if(x.response == "Success!"){
+      setCookie("username",user,10);
+      setCookie("password",pw,10);
       credentials.user = user;
       credentials.pass = pw;
       name = user;
       document.getElementById("loginBox").outerHTML = "";
       alert("Logged in! (but not really)");
     }else{
+      setCookie("username",user,-1);
+      setCookie("password",pw,-1);
+      credentials.user = null;
+      credentials.pass = null;
       alert(x.response);
     }
   }
@@ -157,4 +169,15 @@ function getCookie(cname) {
     }
   }
   return "";
+}
+
+function setCookie(cname, cvalue, exdays) {
+  var d = new Date();
+  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  var expires = "expires="+ d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getData(){
+
 }

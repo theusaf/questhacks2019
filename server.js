@@ -63,6 +63,12 @@ app.post("/login",(req,res)=>{
     }
   }
 });
+app.post("/save",(req,res)=>{
+
+});
+app.post("/get",(req,res)=>{
+  
+});
 
 const socket = new ws.Server({server:server});
 

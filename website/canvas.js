@@ -36,6 +36,6 @@ function drawLabels(){
   ctx.fillText("Time",540,980);
   ctx.save();
   ctx.rotate(-90 * Math.PI / 180);
-  ctx.fillText("Amount Spent",-480,40);
+  ctx.fillText("Amount Saved",-480,40);
   ctx.restore();
 }
