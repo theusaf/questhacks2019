@@ -8,6 +8,7 @@ var monthlySave;
 var goal;
 var days;
 var months;
+var remainder;
 
 function submit(){
   money = Number(document.getElementById("income").value);
@@ -24,10 +25,8 @@ function submit3(){
   goal = Number(document.getElementById("goal").value);
   months = goal/monthlySave;
   days = Math.round(months*30.4666667);
-  submit4();
 }
 // income change
-var remainder;
 function submit4(){
   remainder = goal-monthlySave*dayPass/30.4666667;
   monthlySave = money*percent/100;
@@ -89,6 +88,7 @@ const credentials = {
   user: null,
   data: null
 };
+// logging in
 function login(user,pw,cpw){
   const x = new XMLHttpRequest();
   x.open("POST",`http://${location.host}/login`);
@@ -122,7 +122,7 @@ chatSocket.onmessage = function(e){
       id = data.id;
       for(var i in data.messages){
         const t = document.createElement("p");
-        t.innerHTML = `${data.messages[i].name} [${data.messages[i].id}]: ${data.messages[i].message}`;
+        t.innerHTML = `${data.messages[i].name} [${data.messages[i].id}]: ${data.messages[i].message.replace(/</mg,"&lt;").replace(/>/mg,"&gt;")}`;
         chatLog.append(t);
       }
       chatLog.scrollTop = chatLog.scrollHeight;
@@ -141,4 +141,20 @@ const chatHide = document.getElementById("hideChat");
 chatHide.onclick = function(){
   const a = document.getElementsByClassName("chat")[0];
   a.className = a.className == "chat hide" ? "chat" : "chat hide";
+}
+
+function getCookie(cname) {
+  var name = cname + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var ca = decodedCookie.split(';');
+  for(var i = 0; i <ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
 }
