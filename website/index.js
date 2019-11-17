@@ -207,5 +207,16 @@ function getData(){
   const x = new XMLHttpRequest();
   x.open("POST",`http://${location.host}/get`);
   x.setRequestHeader("content-type","application/json");
-  x.send(credentials);
+  x.send(JSON.stringify(credentials));
+  x.onload = function(){
+    if(x.response == "{}"){
+      return;
+    }
+    const data = JSON.parse(x.response);
+    data.forEach(o=>{
+      credentials.data.push(o);
+      goal = o.goal;
+    });
+    drawStuff();
+  };
 }

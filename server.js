@@ -29,7 +29,7 @@ app.post("/login",(req,res)=>{
           const newPassword = md5(data.password);
           data2[data.username] = {
             password: newPassword,
-            data: {}
+            data: []
           };
           fs.writeFileSync(path.join(__dirname,"database.json"),JSON.stringify(data2));
           res.send("Success!");
@@ -64,10 +64,42 @@ app.post("/login",(req,res)=>{
   }
 });
 app.post("/save",(req,res)=>{
-
+  try{
+    const a = req.body;
+    fs.readFile(path.join(__dirname,"database.json"),"utf8",(err,data)=>{
+      const b = JSON.parse(data);
+      if(b[a.credentials.user]){
+        if(b[a.credentials.user].password == md5(a.credentials.pass)){
+          b[a.credentials.user].data.push(a);
+          fs.writeFileSync(path.join(__dirname,"database.json"),JSON.stringify(b),"utf8");
+          return res.send(JSON.stringify(b[a.credentials.user].data));
+        }
+      }
+      res.status(400);
+      res.send("no");
+    });
+  }catch(err){
+    res.status(400);
+    res.send("no");
+  }
 });
 app.post("/get",(req,res)=>{
-  
+  try{
+    const a = req.body;
+    fs.readFile(path.join(__dirname,"database.json"),"utf8",(err,data)=>{
+      const b = JSON.parse(data);
+      if(b[a.user]){
+        if(b[a.user].password == md5(a.pass)){
+          return res.send(JSON.stringify(b[a.user].data));
+        }
+      }
+      res.status(400);
+      res.send("no");
+    });
+  }catch(err){
+    res.status(400);
+    res.send("no");
+  }
 });
 
 const socket = new ws.Server({server:server});

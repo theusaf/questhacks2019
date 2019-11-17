@@ -1,3 +1,4 @@
+var left = 0;
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext('2d');
 
@@ -44,6 +45,9 @@ function drawLabels(){
 
 // I have no idea what i'm doing. help!
 function drawStuff(){
+  ctx.fillStyle = "white";
+  ctx.fillRect(0,0,1000,1000);
+  drawAxis();
   // create equation
   // y = mx (y = saved, x = days, m = daily)
   let i;
@@ -52,16 +56,22 @@ function drawStuff(){
   ctx.moveTo(80,920);
   ctx.strokeStyle = "black";
   ctx.lineWidth = "5";
-  let left = 0;
+  left = 0;
   d.forEach(o=>{
-    left+=o.days;
+    //left+=o.days;
+    if(o.days > left){
+      left = o.days;
+    }
   }); // left represents total days
   for(i in d){
-    const diff = Math.round(Date.now() - d[i].date) / 1000 / 360 / 24; // diff in days
+    const diff = Math.round((Date.now() - d[i].date) / 1000 / 360 / 24); // diff in days
     const day1 = d[i].savemonthly / 30.4666667; // daily cost
-    const scalarX = 1000 / left;
     const scalarY = 1000 / goal;
-    ctx.lineTo(80 + scalarX * (diff / left),980 - (diff * scalarY * day1));
+    console.log(diff);
+    console.log(left);
+    // y value works.
+    ctx.lineTo(80 + 920 * (diff / left),920 - (diff * (scalarY * day1)));
+    console.log(920 - (diff * (scalarY * day1)));
     ctx.stroke();
   }
   // draw rest of line
@@ -69,5 +79,19 @@ function drawStuff(){
   const scalarY = 1000 / goal;
   ctx.lineTo(1000,80);
   ctx.stroke();
+  ctx.closePath();
+  drawMoreLabels();
+}
+
+function drawMoreLabels(){
+  ctx.beginPath();
+  ctx.fillStyle = "black";
+  ctx.textAlign = "center";
+  ctx.font = "50px Arial";
+  ctx.fillText(left + " Days",900,980);
+  ctx.save();
+  ctx.rotate(-90 * Math.PI / 180);
+  ctx.fillText("$" + goal,-100,40);
+  ctx.restore();
   ctx.closePath();
 }
