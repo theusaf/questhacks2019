@@ -65,8 +65,8 @@ function drawStuff(){
   }); // left represents total days
   let totalDiff = 0;
   for(i in d){
-    totalDiff += diff;
     const diff = Math.round((Date.now() - d[i].date) / 1000 / 360 / 24); // diff in days
+    totalDiff += diff;
     const day1 = d[i].savemonthly / 30.4666667; // daily cost
     const scalarY = 1000 / goal;
     console.log(diff);
